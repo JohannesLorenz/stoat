@@ -679,6 +679,7 @@ struct ExtractRtosc : public FunctionPass {
 
     bool isName(GetElementPtrInst *getelm)
     {
+        return false;
         if(getelm->getNumOperands() != 3)
             return false;
         if(dyn_cast<ConstantInt>(getelm->getOperand(2))->getZExtValue() != 0)
@@ -759,6 +760,7 @@ struct ExtractRtosc : public FunctionPass {
     bool runOnFunction(Function &Fn) override {
         //TODO check for the existance of an __cxx_global_var_init$N for an
         //arbitrary N
+        return false;
         if(!(Fn.getName() == "__cxx_global_var_init"
                     || Fn.getName() == "__cxx_global_var_init1"
                     || Fn.getName() == "__cxx_global_var_init2"
